@@ -12,7 +12,7 @@ type stack struct {
     next *stack
 }
 
-func NewStack(data interface{}) *Stack {
+func NewStack() *Stack {
     return &Stack{}
 }
 

@@ -2,7 +2,6 @@ package common
 
 import (
     "testing"
-    "fmt"
 )
 
 func TestStack(t *testing.T) {

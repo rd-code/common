@@ -2,6 +2,7 @@ package common
 
 import "github.com/pkg/errors"
 
+//实现栈的简单封装
 type Stack struct {
     stack *stack
     size  int

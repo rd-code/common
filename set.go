@@ -93,3 +93,14 @@ func (h *HashInt) Cap() int {
     }
     return h.cap
 }
+
+func (h *HashInt) ForEach(f func(v int)) {
+    if h.Len() == 0 {
+        return
+    }
+    for _, items := range h.data {
+        for _, item := range items {
+            f(item)
+        }
+    }
+}

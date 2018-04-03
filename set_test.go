@@ -21,4 +21,5 @@ func TestHashInt(t *testing.T) {
     if hash.Contains(3) {
         t.Errorf("not contains 3")
     }
+
 }

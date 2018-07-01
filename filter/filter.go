@@ -5,7 +5,7 @@ import (
 )
 
 /**
- * DESCRIPTION:
+ * DESCRIPTION: 完成某些过滤功能
  *
  * @author rd
  * @create 2018-07-01 14:39

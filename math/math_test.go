@@ -31,6 +31,7 @@ func TestFormatInt(t *testing.T) {
         {"11", 6, 5},
         {"11", 17, 16},
         {"20", 124, 62},
+        {"-11", -6, 5},
     }
 
     for _, param := range params {

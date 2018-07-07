@@ -1,4 +1,4 @@
-package common
+package container
 
 const (
     INITIAL_CAPACITY = 16

@@ -1,4 +1,4 @@
-package common
+package container
 
 import "github.com/pkg/errors"
 

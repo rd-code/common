@@ -10,5 +10,5 @@ package cache
 实现缓存功能
  */
 type Cache interface {
-    Get(key string) interface{} //根据key值来获取缓存的值
+    Get(key interface{}) (interface{}, error) //根据key值来获取缓存的值
 }

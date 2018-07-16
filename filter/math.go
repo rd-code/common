@@ -349,36 +349,35 @@ func MinFloat32(items []float32) float32 {
 
 //从指定slice查询最大的元素
 //data 源slice
-//greater 判断第一个参数是否大于第二个参数
-func Max(data interface{}, greater func(v1, v2 interface{}) bool) interface{} {
+//greater s 判断第一个下标所对象是否大于第二个下标对象
+func Max(data interface{}, greater func(i, j int) bool) interface{} {
     rv := reflect.ValueOf(data)
-    var res, tmp interface{}
-    if rv.Len() > 0 {
-        res = rv.Index(0).Interface()
+    if rv.Len() == 0 {
+        return nil
     }
+    var maxPosition int
     for i := 0; i < rv.Len(); i++ {
-        tmp = rv.Index(i).Interface()
-        if greater(tmp, res) {
-            res = tmp
+        if greater(i, maxPosition) {
+            maxPosition = i
         }
     }
-    return res
+    return rv.Index(maxPosition).Interface()
 }
 
 //从指定slice查询最大的元素
 //data 源slice
-//less 判断第一个参数是否小于第二个参数
-func Min(data interface{}, less func(v1, v2 interface{}) bool) interface{} {
+//less 判断第一个下标所在对象是否小于第二个下标对象
+func Min(data interface{}, less func(i, j int) bool) interface{} {
     rv := reflect.ValueOf(data)
-    var res, tmp interface{}
-    if rv.Len() > 0 {
-        res = rv.Index(0).Interface()
+
+    if rv.Len() == 0 {
+        return nil
     }
+    var minPosition int
     for i := 0; i < rv.Len(); i++ {
-        tmp = rv.Index(i).Interface()
-        if less(tmp, res) {
-            res = tmp
+        if less(i, minPosition) {
+            minPosition = i
         }
     }
-    return res
+    return rv.Index(minPosition).Interface()
 }

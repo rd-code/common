@@ -1,9 +1,8 @@
 package filter
 
 import (
-    "testing"
-    "fmt"
     "strings"
+    "testing"
 )
 
 /**
@@ -18,29 +17,24 @@ func TestFilter(t *testing.T) {
         data  string
         value bool
     }
-    params := []Param{
+    src := []Param{
         {"a", true},
         {"b", false},
         {"c", true},
     }
-    items := Filter(params, func(index int) bool {
-        return params[index].value
+    var dst []string
+    Filter(src, &dst, func(index int) (interface{}, bool) {
+        return src[index].data, src[index].value
     })
-    res := []Param{
-        {"a", true},
-        {"c", true},
-    }
-    if len(res) != len(items) {
-        t.Errorf("expected size:%d, actual size:%s", len(res), len(items))
+
+    res := []string{"a", "c",}
+    if len(res) != len(dst) {
+        t.Errorf("expected size:%d, actual size:%d", len(res), len(dst))
     }
     for i, v := range res {
-        item, ok := items[i].(Param)
-        if !ok {
-            t.Fatalf("element cannot convert to Param")
-        }
-        if !strings.EqualFold(item.data, v.data) || item.value != v.value {
+        item := dst[i]
+        if !strings.EqualFold(item, v) {
             t.Fatalf("exptected element:%+v, actuval element:%+v", v, item)
         }
     }
-    fmt.Println(items)
 }

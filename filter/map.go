@@ -10,15 +10,20 @@ import (
  * @author rd
  * @create 2018-07-01 14:39
  **/
+//Map 从源slice的元素里面挑选信息到目的slice里面
+//src 源slice
+//dst 目的slice
+//f 挑选函数
+func Map(src interface{}, dst interface{}, f func(index int) interface{}) {
+    srcRV := reflect.ValueOf(src)
+    slice := reflect.MakeSlice(reflect.TypeOf(dst).Elem(), srcRV.Len(), srcRV.Len())
 
-//从一个slice里面挑选出来部分数据
-func Map(v interface{}, f func(index int) interface{}) ([]interface{}) {
-    rv := reflect.ValueOf(v)
-    res := make([]interface{}, rv.Len())
-    for i := 0; i < rv.Len(); i++ {
-        res[i] = f(i)
+    for i := 0; i < srcRV.Len(); i++ {
+        value := f(i)
+        slice.Index(i).Set(reflect.ValueOf(value))
     }
-    return res
+    reflect.ValueOf(dst).Elem().Set(slice)
+
 }
 
 //同Map 返回为[]string
